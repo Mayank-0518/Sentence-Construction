@@ -41,7 +41,6 @@ function Question() {
     }
   };
   
-
   const handleUnselectWord = (blankIndex) => {
     dispatch(unselectWord({ blankIndex }));
   };
@@ -56,13 +55,13 @@ function Question() {
           <React.Fragment key={index}>
             {part}
             {index < questionParts.length - 1 && (
-              <span className="inline-block mx-1" style={{ width: '60px', verticalAlign: 'bottom' }}>
+              <span className="inline-block mx-2 sm:mx-3" style={{ width: '120px', verticalAlign: 'bottom' }}>
                 {/* rendering the selected word from userselections on blanks (if present shows the word else blank) */}
                 {userSelections.some(s => s.blankIndex === index && s.questionIndex === currentQuestionIndex) ? (
                   <div className="inline-block relative" style={{ width: '100%' }}>
                     <button 
                       onClick={() => handleUnselectWord(index)}
-                      className="px-1 py-0.5 text-xs sm:text-sm border border-gray-300 rounded mb-1"
+                      className="px-2 py-1 text-xs sm:text-sm border border-gray-300 rounded mb-1 min-w-[100px]"
                     >
                       {userSelections.find(s => s.blankIndex === index && s.questionIndex === currentQuestionIndex)?.word}
                     </button>
@@ -71,7 +70,7 @@ function Question() {
                 ) : (
                   <div className="inline-block relative" style={{ width: '100%' }}>
                     <div className="border-b-2 border-gray-400 absolute bottom-0 left-0 right-0"></div>
-                    <div style={{ height: '14px' }}></div> 
+                    <div style={{ height: '20px' }}></div> 
                   </div>
                 )}
               </span>
@@ -90,12 +89,12 @@ function Question() {
         {renderQuestion()}
       </div>
       
-      <div className='mt-4 sm:mt-6 md:mt-8 flex flex-wrap justify-center gap-1.5 sm:gap-2'>
+      <div className='mt-4 sm:mt-6 md:mt-8 flex flex-wrap justify-center gap-2 sm:gap-3'>
         {availableOptions.map((option, index) => (
           <button 
             key={index}
             onClick={() => handleSelectWord(option)}
-            className="px-1.5 sm:px-2 md:px-3 py-0.5 text-xs sm:text-sm border border-gray-400 rounded"
+            className="px-3 sm:px-4 py-1 sm:py-1.5 text-xs sm:text-sm border border-gray-400 rounded min-w-[80px] m-1"
           >
             {option}
           </button>
